@@ -1,4 +1,4 @@
-# Highspot-coding-exercise
+# HS-coding-exercise
 Hello! Thank you for reviewing my submission for Highspot's Coding Exercise! :)
 
 ## Description
