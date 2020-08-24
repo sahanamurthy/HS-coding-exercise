@@ -15,19 +15,19 @@ var mixtape = JSON.parse(mixtapeJSON);
 var changesJSON = fs.readFileSync("changes.json");
 var changes = JSON.parse(changesJSON);
 
-// Call function to create new playlist if changes.json contains a change to add a new playlist
+// Create new playlist if changes.json contains a change to add a new playlist
 if (changes.create.length > 0)
 {
     createNewPlaylist();
 }
 
-// Call function to add a song to a playlist if changes.json contains a modify object
+// Add a song to a playlist if changes.json contains a modify object
 if (changes.modify.length > 0)
 {
     addSongToExistingPlaylist();
 }
 
-// Call function to remove a playlist if changes.json contains a remove object
+// Remove a playlist if changes.json contains a remove object
 if (changes.remove.length > 0)
 {   
     removePlaylist();
@@ -63,6 +63,7 @@ function createNewPlaylist()
             "song_ids" : changes.create[i]["song_ids"]
        };
 
+       // Add new playlist to mixtape.json 
         mixtape.playlists.push(newPlaylist);
         console.log(`Added playlist ${newPlaylist["id"]}`);
     }
@@ -76,7 +77,7 @@ function addSongToExistingPlaylist()
     {
         var playlistId = changes.modify[i]["id"];
         
-        // Find playlist location in mixtape.json
+        // Find playlist in mixtape.json
         var playlistInMixtape = mixtape.playlists.filter(function(playlist) 
         {
             return playlist.id === playlistId; 
@@ -122,7 +123,7 @@ function removePlaylist()
     {
         var playlistId = changes.remove[i]["id"];
 
-        // Find playlist location in mixtape.json
+        // Find playlist in mixtape.json
         var playlistInMixtape = mixtape.playlists.filter(function(playlist) 
         {
             return playlist.id === playlistId; 
